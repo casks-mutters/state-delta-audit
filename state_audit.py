@@ -49,4 +49,5 @@ def main():
     print(f"⏱️ Done in {time.time()-t0:.2f}s")
 
 if __name__ == "__main__":
+        if blockA > blockB: blockA, blockB = blockB, blockA; print("🔄 Swapped block order for ascending comparison.")
     main()
