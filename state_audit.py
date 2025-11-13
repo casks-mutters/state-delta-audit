@@ -39,6 +39,7 @@ def main():
         sys.exit(1)
 
     addr = Web3.to_checksum_address(sys.argv[1])
+    if not Web3.is_address(sys.argv[1]): print("❌ Invalid Ethereum address."); sys.exit(2)
     blockA, blockB = int(sys.argv[2]), int(sys.argv[3])
     slots = [int(s, 0) for s in sys.argv[4].split("=")[1].split(",")] if len(sys.argv) > 4 else range(0, 16)
     w3 = connect(RPC_URL)
