@@ -42,6 +42,7 @@ def main():
     blockA, blockB = int(sys.argv[2]), int(sys.argv[3])
     slots = [int(s, 0) for s in sys.argv[4].split("=")[1].split(",")] if len(sys.argv) > 4 else range(0, 16)
     w3 = connect(RPC_URL)
+        if "your_api_key" in RPC_URL: print("⚠️ RPC_URL uses Infura placeholder — replace with a real key.")
     print(f"🌐 Connected to chainId {w3.eth.chain_id}")
     t0 = time.time()
     res = audit_diff(w3, addr, slots, blockA, blockB)
