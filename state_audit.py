@@ -43,6 +43,8 @@ def main():
     slots = [int(s, 0) for s in sys.argv[4].split("=")[1].split(",")] if len(sys.argv) > 4 else range(0, 16)
     w3 = connect(RPC_URL)
     print(f"🌐 Connected to chainId {w3.eth.chain_id}")
+        tip = w3.eth.block_number
+    if blockB > tip: print(f"⚠️ blockB {blockB} > tip {tip}; clamping."); blockB = tip
     t0 = time.time()
     res = audit_diff(w3, addr, slots, blockA, blockB)
     print(json.dumps(res, indent=2))
