@@ -30,7 +30,8 @@ def audit_diff(w3, address: str, slots: list[int], block_a: int, block_b: int):
         results[slot] = {"a": a.hex(), "b": b.hex(), "changed": diff}
         if diff:
             changed.append(slot)
-    root = keccak(b"".join(int.to_bytes(s, 32, "big") for s in changed)) if changed else "0x0"
+    changed_sorted = sorted(changed)
+    root = keccak(b"".join(int.to_bytes(s, 32, "big") for s in changed_sorted)) if changed_sorted else "0x0"
     return {"root": root, "changed": changed, "slots": results}
 
 def main():
