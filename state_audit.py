@@ -26,6 +26,7 @@ def audit_diff(w3, address: str, slots: list[int], block_a: int, block_b: int):
     for slot in slots:
         a = get_storage(w3, address, slot, block_a)
         b = get_storage(w3, address, slot, block_b)
+        if len(a) != 32 or len(b) != 32: print("❌ Storage reads did not return 32 bytes; aborting."); sys.exit(2)
         diff = (a != b)
         results[slot] = {"a": a.hex(), "b": b.hex(), "changed": diff}
         if diff:
