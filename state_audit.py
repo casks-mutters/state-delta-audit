@@ -41,6 +41,8 @@ def main():
     addr = Web3.to_checksum_address(sys.argv[1])
     blockA, blockB = int(sys.argv[2]), int(sys.argv[3])
     slots = [int(s, 0) for s in sys.argv[4].split("=")[1].split(",")] if len(sys.argv) > 4 else range(0, 16)
+        slots = list(slots)
+    if len(slots) > 4096: print(f"⚠️ Truncating slots to first 4096 (got {len(slots)})."); slots = slots[:4096]
     w3 = connect(RPC_URL)
     print(f"🌐 Connected to chainId {w3.eth.chain_id}")
     t0 = time.time()
