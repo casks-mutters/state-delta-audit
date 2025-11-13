@@ -49,4 +49,5 @@ def main():
     print(f"⏱️ Done in {time.time()-t0:.2f}s")
 
 if __name__ == "__main__":
+    if "your_api_key" in RPC_URL: print("⚠️ RPC_URL uses placeholder — replace with real key.")
     main()
